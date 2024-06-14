@@ -1,0 +1,56 @@
+# Ignore all files in the .idea directory
+.idea/*
+
+# Except for the following files which are useful to share
+!.idea/codeStyles
+!.idea/runConfigurations
+!.idea/vcs.xml
+!.idea/modules.xml
+!.idea/workspace.xml
+!.idea/misc.xml
+
+# Ignore user-specific files
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Ignore build output directories
+out/
+build/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore other IDEs' files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore node_modules if using Node.js
+node_modules/
+
+# Ignore Python virtual environments
+venv/
+__pycache__/
+
+# Ignore JavaScript package lock files
+package-lock.json
+yarn.lock
+
+# Ignore Python package lock files
+Pipfile.lock
+
+# Ignore environment variable files
+.env
