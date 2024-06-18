@@ -1,4 +1,4 @@
-package com.keyin.client;
+package com.keyin.http.client;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
