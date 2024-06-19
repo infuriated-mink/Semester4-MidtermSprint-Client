@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RESTClient {
+public abstract class RESTClient {
 
     private static final String SERVER_URL = "http://localhost:8080";  // Change this to your server URL
 
@@ -87,4 +87,6 @@ public class RESTClient {
             e.printStackTrace();
         }
     }
+
+    protected abstract URL createURL(String endpoint) throws Exception;
 }
