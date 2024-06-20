@@ -10,8 +10,6 @@ public class RESTClient {
 
 
     private static final String SERVER_URL = "http://localhost:8080";
-    private static final String SERVER_URL = "http://localhost:8080";  // Change this to your server URL
-  main
 
     // Method to send a GET request
     public static String sendGetRequest(String endpoint) throws Exception {
