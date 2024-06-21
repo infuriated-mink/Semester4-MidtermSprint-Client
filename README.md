@@ -51,9 +51,9 @@ The client application provides a command-line interface (CLI) to interact with 
 
     - Enter the attendee ID when prompted.
 
-4. **List all speakers for a specific event:**
+4. **List all events for a specific dae:**
 
-    - Enter the event ID when prompted.
+    - Enter the date in (YYYY-MM-DD).
 
 5. **Exit the application:**
 
