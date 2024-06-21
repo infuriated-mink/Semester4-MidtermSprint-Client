@@ -36,7 +36,7 @@ class HTTPRestCLIApplicationTest {
         System.setIn(in);
 
         cliApp.listEventsAtVenue();
-        verify(restClientMock, times(1)).sendGetRequest("/api/events/venue/1");
+        verify(restClientMock, times(1)).sendGetRequest("/events?venueId=1");
     }
 
     @Test
@@ -48,19 +48,7 @@ class HTTPRestCLIApplicationTest {
         System.setIn(in);
 
         cliApp.listAttendeesForEvent();
-        verify(restClientMock, times(1)).sendGetRequest("/api/attendees/event/1");
-    }
-
-    @Test
-    void testListEventsForAttendee() throws Exception {
-        when(restClientMock.sendGetRequest(anyString())).thenReturn("Mocked Events Response");
-
-        String input = "1\n";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-        cliApp.listEventsForAttendee();
-        verify(restClientMock, times(1)).sendGetRequest("/api/events/attendee/1");
+        verify(restClientMock, times(1)).sendGetRequest("/attendees?event=1");
     }
 
     @Test
@@ -72,6 +60,18 @@ class HTTPRestCLIApplicationTest {
         System.setIn(in);
 
         cliApp.listSpeakersForEvent();
-        verify(restClientMock, times(1)).sendGetRequest("/api/speakers/event/1");
+        verify(restClientMock, times(1)).sendGetRequest("/events_speakers?eventId=1");
+    }
+
+    @Test
+    void testListEventsForSpecificDate() throws Exception {
+        when(restClientMock.sendGetRequest(anyString())).thenReturn("Mocked Events Response");
+
+        String input = "2023-06-21\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        cliApp.listEventsForSpecificDate();
+        verify(restClientMock, times(1)).sendGetRequest("/events?date=2023-06-21");
     }
 }

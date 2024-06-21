@@ -20,13 +20,14 @@ public class HTTPRestCLIApplication {
         scanner.nextLine();
 
         try {
-            String response = restClient.sendGetRequest("/api/events/venue/" + venueId);
+            String response = restClient.sendGetRequest("/events?venueId=" + venueId);
             System.out.println("Events at Venue " + venueId + ": " + response);
         } catch (Exception e) {
             System.out.println("An error occurred while fetching events. Please try again later.");
             e.printStackTrace();
         }
     }
+
 
     // Method to list all attendees for a specific event
     public void listAttendeesForEvent() {
@@ -36,7 +37,7 @@ public class HTTPRestCLIApplication {
         scanner.nextLine();
 
         try {
-            String response = restClient.sendGetRequest("/api/attendees/event/" + eventId);
+            String response = restClient.sendGetRequest("/attendees?event=" + eventId);
             System.out.println("Attendees for Event " + eventId + ": " + response);
         } catch (Exception e) {
             System.out.println("An error occurred while fetching attendees. Please try again later.");
@@ -44,21 +45,22 @@ public class HTTPRestCLIApplication {
         }
     }
 
-    // Method to list all events for a specific attendee
-    public void listEventsForAttendee() {
+
+    // Method to list all events for a specific date
+    public void listEventsForSpecificDate(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Attendee ID: ");
-        int attendeeId = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Enter Date (YYYY-MM-DD): ");
+        String date = scanner.nextLine();
 
         try {
-            String response = restClient.sendGetRequest("/api/events/attendee/" + attendeeId);
-            System.out.println("Events for Attendee " + attendeeId + ": " + response);
+            String response = restClient.sendGetRequest("/events?date=" + date);
+            System.out.println("Events for date " + date + ": " + response);
         } catch (Exception e) {
             System.out.println("An error occurred while fetching events. Please try again later.");
             e.printStackTrace();
         }
     }
+
 
     // Method to list all speakers for a specific event
     public void listSpeakersForEvent() {
@@ -68,7 +70,7 @@ public class HTTPRestCLIApplication {
         scanner.nextLine();
 
         try {
-            String response = restClient.sendGetRequest("/api/speakers/event/" + eventId);
+            String response = restClient.sendGetRequest("/events_speakers?eventId=" + eventId);
             System.out.println("Speakers for Event " + eventId + ": " + response);
         } catch (Exception e) {
             System.out.println("An error occurred while fetching speakers. Please try again later.");
@@ -84,7 +86,7 @@ public class HTTPRestCLIApplication {
             System.out.println("Event Management System");
             System.out.println("1. List events at a specific venue");
             System.out.println("2. List all attendees for a specific event");
-            System.out.println("3. List all events for a specific attendee");
+            System.out.println("3. List all events for a specific date");
             System.out.println("4. List all speakers for a specific event");
             System.out.println("5. Exit");
             System.out.print("Choose an option: ");
@@ -99,7 +101,7 @@ public class HTTPRestCLIApplication {
                     cliApp.listAttendeesForEvent();
                     break;
                 case 3:
-                    cliApp.listEventsForAttendee();
+                    cliApp.listEventsForSpecificDate();
                     break;
                 case 4:
                     cliApp.listSpeakersForEvent();
