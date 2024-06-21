@@ -53,7 +53,7 @@ The client application provides a command-line interface (CLI) to interact with 
 
 4. **List all events for a specific dae:**
 
-    - Enter the date in (YYYY-MM-DD).
+    - Enter the date in (YYYY-MM-DD) format when prompted.
 
 5. **Exit the application:**
 
