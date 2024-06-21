@@ -1,5 +1,6 @@
 package com.keyin;
 
+import com.keyin.http.cli.HTTPRestCLIApplication;
 import com.keyin.http.client.RESTClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

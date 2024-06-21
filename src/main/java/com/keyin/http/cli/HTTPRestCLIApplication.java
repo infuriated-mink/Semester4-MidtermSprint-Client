@@ -5,7 +5,7 @@ import com.keyin.http.client.RESTClient;
 import java.util.Scanner;
 public class HTTPRestCLIApplication {
 
-    private RESTClient restClient;
+    protected RESTClient restClient;
 
     // Constructor to initialize the RESTClient
     public HTTPRestCLIApplication() {
