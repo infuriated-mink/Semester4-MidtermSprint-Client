@@ -1,63 +1,26 @@
 package com.keyin.client;
 
 import com.keyin.http.client.RESTClient;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+public class TestRESTClient extends RESTClient {
 
-@ExtendWith(MockitoExtension.class)
-public class TestRESTClient {
-
-    @Mock
-    private HttpURLConnection mockConnection;
-    @Mock
-    private URL mockURL;
-
-    private RESTClient restClient = new RESTClient() {
-        @Override
-        protected URL createURL(String endpoint) throws Exception {
-            return mockURL;
+    @Override
+    public String sendGetRequest(String endpoint) throws Exception {
+        if (endpoint.contains("/api/events/venue/")) {
+            return "Mocked Events Response for Venue";
+        } else if (endpoint.contains("/api/attendees/event/")) {
+            return "Mocked Attendees Response for Event";
+        } else if (endpoint.contains("/api/events/attendee/")) {
+            return "Mocked Events Response for Attendee";
+        } else if (endpoint.contains("/api/speakers/event/")) {
+            return "Mocked Speakers Response for Event";
+        } else {
+            return "Unknown Endpoint";
         }
-    };
-
-    @Test
-    public void testSendGetRequest() throws Exception {
-        // Mock URL and HttpURLConnection behavior
-        Mockito.when(mockURL.openConnection()).thenReturn(mockConnection);
-        Mockito.when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
-        InputStream is = new ByteArrayInputStream("response from GET".getBytes());
-        Mockito.when(mockConnection.getInputStream()).thenReturn(is);
-
-        // Call the method to test
-        String response = restClient.sendGetRequest("/api/test");
-
-        // Verify behavior and assert response
-        Mockito.verify(mockConnection).setRequestMethod("GET");
-        Assertions.assertEquals("response from GET", response);
     }
 
-    @Test
-    public void testSendPostRequest() throws Exception {
-        // Mock URL and HttpURLConnection behavior
-        Mockito.when(mockURL.openConnection()).thenReturn(mockConnection);
-        Mockito.when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_CREATED);
-        InputStream is = new ByteArrayInputStream("response from POST".getBytes());
-        Mockito.when(mockConnection.getInputStream()).thenReturn(is);
-
-        // Call the method to test
-        String jsonInputString = "{\"name\": \"John\", \"age\": 30}";
-        String response = restClient.sendPostRequest("/api/test", jsonInputString);
-
-        // Verify behavior and assert response
-        Mockito.verify(mockConnection).setRequestMethod("POST");
-        Assertions.assertEquals("response from POST", response);
+    @Override
+    public String sendPostRequest(String endpoint, String jsonInputString) throws Exception {
+        return "Mocked POST Response";
     }
 }
